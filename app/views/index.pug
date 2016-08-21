@@ -1,0 +1,45 @@
+doctype html
+html(ng-app="app")
+  head
+    title Http over RSA
+    link(rel="stylesheet", href="css/bootstrap.css")
+  body
+    .container(ng-controller="AppController as app")
+      h1 Http Over RSA Demo
+      .row(ng-show="errorMessage")
+        p.text.text-danger.text-center {{errorMessage}}
+      .row
+        .col-sm-6
+          .text-center.h4 Client Public Key
+          p(ng-show="publicKey") {{publicKey}}
+          p(ng-show="!publicKey") not created
+          .text-center.h4 Server Public Key
+          p(ng-show="serverPubulicKey") {{serverPubulicKey}}
+          p(ng-show="!serverPubulicKey") not Got
+        .col-sm-6
+          .text-center.h4 Client Private Key
+          p(ng-show="privateKey") {{privateKey}}
+          p(ng-show="!privateKey") not created
+        .col-sm-12
+          button.btn.btn-block.btn-info(ng-click="createNewKey()") Create New RSA Keys
+      .row
+        .col-sm-12
+          .h4 Send Data to Server with RSA
+        .col-sm-12
+          textarea.form-control(ng-model="text", rows=2)
+        .col-sm-12
+          .col-sm-6.right
+            .form.form-inline
+              label.radio-inline
+                input(type="radio", name="method", ng-model="method", value="get")
+                span GET
+              label.radio-inline
+                input(type="radio", name="method", ng-model="method", value="save")
+                span POST
+              button.btn.btn-primary(ng-click="send()") Send
+
+    script(src="js/jsencrypt.js")
+    script(src="js/angular.js")
+    script(src="js/angular-resource.js")
+    script(src="js/app.js")
+

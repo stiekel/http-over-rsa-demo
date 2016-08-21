@@ -1,0 +1,11 @@
+var app = require('../config/express')();
+var config = require('../config/config');
+
+app.listen(config.port, function(err){
+  if(err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('express listening on:', config.port);
+});
